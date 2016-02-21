@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}jboss-specs-parent
 Version:          1.0.0
-Release:          0.7.9%{namedreltag}.4%{?dist}
+Release:          0.7.9%{namedreltag}.5%{?dist}
 Summary:          JBoss Specification API Parent POM
 Group:            Development/Libraries
 # The license is not included because it's not a part of this tag. License file
@@ -22,9 +22,9 @@ Source0:          %{pkg_name}-%{namedversion}-src-svn.tar.gz
 
 BuildRequires:    %{?scl_prefix_java_common}maven-local
 
-Requires:         maven30-jboss-parent
-Requires:         maven30-maven-compiler-plugin
-Requires:         maven30-maven-release-plugin
+Requires:         %{?scl_prefix}jboss-parent
+Requires:         %{?scl_prefix}maven-compiler-plugin
+Requires:         %{?scl_prefix}maven-release-plugin
 Requires:         %{?scl_prefix_java_common}maven-local
 BuildArch:        noarch
 
@@ -33,19 +33,19 @@ Parent POM that allows building all specification projects at once.
 
 %prep
 %setup -q -n %{pkg_name}-%{namedversion}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %pom_xpath_remove pom:modules
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -54,6 +54,9 @@ set -e -x
 %dir %{_mavenpomdir}/%{pkg_name}
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.0-0.7.9.Beta2.5
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0.0-0.7.9.Beta2.4
 - maven33 rebuild
 
