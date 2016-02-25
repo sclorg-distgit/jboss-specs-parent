@@ -7,7 +7,7 @@
 
 Name:             %{?scl_prefix}jboss-specs-parent
 Version:          1.0.0
-Release:          0.7.9%{namedreltag}.5%{?dist}
+Release:          0.7.9%{namedreltag}.6%{?dist}
 Summary:          JBoss Specification API Parent POM
 Group:            Development/Libraries
 # The license is not included because it's not a part of this tag. License file
@@ -20,12 +20,12 @@ Url:              http://www.jboss.org/
 # tar czf jboss-specs-parent-1.0.0.Beta2-src-svn.tar.gz jboss-specs-parent-1.0.0.Beta2
 Source0:          %{pkg_name}-%{namedversion}-src-svn.tar.gz
 
-BuildRequires:    %{?scl_prefix_java_common}maven-local
+BuildRequires:    %{?scl_prefix}maven-local
 
 Requires:         %{?scl_prefix}jboss-parent
 Requires:         %{?scl_prefix}maven-compiler-plugin
 Requires:         %{?scl_prefix}maven-release-plugin
-Requires:         %{?scl_prefix_java_common}maven-local
+Requires:         %{?scl_prefix}maven-local
 BuildArch:        noarch
 
 %description
@@ -54,6 +54,9 @@ set -e -x
 %dir %{_mavenpomdir}/%{pkg_name}
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0.0-0.7.9.Beta2.6
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.0-0.7.9.Beta2.5
 - maven33 rebuild #2
 
